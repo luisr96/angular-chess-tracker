@@ -2,12 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../shared/data.service';
 import { IProfileData } from '../shared/ProfileData';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [ReactiveFormsModule, JsonPipe],
+  imports: [ReactiveFormsModule, MatInputModule, MatButtonModule, JsonPipe],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
 })
@@ -55,6 +57,10 @@ export class DashboardComponent implements OnInit {
         console.log(err);
       }
     );
+  }
+
+  onSearchInput(event: Event) {
+    this.userSearch.setValue((event.target as HTMLInputElement).value);
   }
 
   convertTime(unixTime: number) {
