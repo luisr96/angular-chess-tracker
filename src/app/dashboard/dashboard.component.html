@@ -1,13 +1,5 @@
 <div class="search-container">
-  <mat-form-field>
-    <input
-      matInput
-      [value]="userSearch.value"
-      (input)="onSearchInput($event)"
-    />
-  </mat-form-field>
-
-  <button mat-button type="submit" (click)="onSearch($event)">Submit</button>
+  <app-search (search)="handleSearch($event)"></app-search>
 </div>
 
 <div class="user-details-container">
@@ -16,8 +8,9 @@
   <p>Last online: {{ convertTime(userData.last_online) }}</p>
 </div>
 
+{{ searchTerm }}
+
 <p>Current month: {{ currentMonth }}</p>
 <p>Current year: {{ currentYear }}</p>
 
-<p>{{ userSearch.value }}</p>
 <p>{{ userData | json }}</p>
