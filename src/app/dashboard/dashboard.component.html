@@ -3,9 +3,12 @@
 </div>
 
 <div class="user-details-container">
-  <p>{{ userData.username }}</p>
-  <img [src]="userData.avatar" />
-  <p>Last online: {{ convertTime(userData.last_online) }}</p>
+  <img [src]="userData.avatar" alt="User Avatar" />
+  <div class="user-info">
+    <p>{{ userData.username }}</p>
+    <p>Joined: {{ convertTime(userData.joined) }}</p>
+    <p>Last online: {{ convertTime(userData.last_online) }}</p>
+  </div>
 </div>
 
 {{ searchTerm }}

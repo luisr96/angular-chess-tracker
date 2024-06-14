@@ -1,7 +1,10 @@
 <mat-form-field>
-  <input matInput [formControl]="searchTerm" required />
+  <input
+    matInput
+    [formControl]="searchTerm"
+    required
+    placeholder="Search for a player..."
+  />
 </mat-form-field>
 
 <button mat-button type="submit" (click)="onSearch()">Submit</button>
-
-{{ searchTerm.value }}
