@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../shared/data.service';
-import { IProfileData } from '../shared/ProfileData';
+import { IProfileData, defaultProfileData } from '../shared/ProfileData';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { JsonPipe, AsyncPipe } from '@angular/common';
 import { SearchComponent } from '../search/search.component';
 import { Observable } from 'rxjs';
+import { UserStatsData, defaultUserStatsData } from '../shared/UserStatsData';
 
 @Component({
   selector: 'app-dashboard',
@@ -32,24 +33,9 @@ export class DashboardComponent implements OnInit {
   testUserData$: Observable<IProfileData> =
     this.dataService.getPlayerData('luisr96');
 
-  userData: IProfileData = {
-    avatar: '',
-    player_id: 0,
-    '@id': '',
-    url: '',
-    username: '',
-    followers: 0,
-    country: '',
-    last_online: 0,
-    joined: 0,
-    status: '',
-    is_streamer: false,
-    verified: false,
-    league: '',
-    streaming_platforms: [],
-  };
+  userData: IProfileData = defaultProfileData;
 
-  userStatsData = {};
+  userStatsData: UserStatsData = defaultUserStatsData;
 
   ngOnInit() {
     this.getPlayerData();

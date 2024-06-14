@@ -2,18 +2,53 @@
   <app-search (search)="handleSearch($event)"></app-search>
 </div>
 
-<div class="user-details-container">
-  <img [src]="userData.avatar" alt="User Avatar" />
-  <div class="user-info">
-    <p>{{ userData.username }}</p>
-    <p>Joined: {{ convertTime(userData.joined) }}</p>
-    <p>Last online: {{ convertTime(userData.last_online) }}</p>
+<div class="main-container">
+  <div class="user-details-container">
+    <img [src]="userData.avatar" alt="User Avatar" />
+    <div class="user-info">
+      <p>{{ userData.username }}</p>
+      <p>Joined: {{ convertTime(userData.joined) }}</p>
+      <p>Last online: {{ convertTime(userData.last_online) }}</p>
+    </div>
   </div>
+
+  <div class="stats-container">
+    <div class="stats-section">
+      <h3>Daily</h3>
+      <p>{{ userStatsData.chess_daily.last.rating }}</p>
+      <p>
+        {{ userStatsData.chess_daily.record.win }} Wins,
+        {{ userStatsData.chess_daily.record.loss }} Losses,
+        {{ userStatsData.chess_daily.record.draw }} Draws
+      </p>
+    </div>
+
+    <div class="stats-section">
+      <h3>Rapid</h3>
+      <p>{{ userStatsData.chess_rapid.last.rating }}</p>
+      <p>
+        {{ userStatsData.chess_rapid.record.win }} Wins,
+        {{ userStatsData.chess_rapid.record.loss }} Losses,
+        {{ userStatsData.chess_rapid.record.draw }} Draws
+      </p>
+    </div>
+
+    <div class="stats-section">
+      <h3>Blitz</h3>
+      <p>{{ userStatsData.chess_blitz.last.rating }}</p>
+      <p>
+        {{ userStatsData.chess_blitz.record.win }} Wins,
+        {{ userStatsData.chess_blitz.record.loss }} Losses,
+        {{ userStatsData.chess_blitz.record.draw }} Draws
+      </p>
+    </div>
+  </div>
+
+  {{ searchTerm }}
+
+  <p>Current month: {{ currentMonth }}</p>
+  <p>Current year: {{ currentYear }}</p>
+
+  <p>{{ userData | json }}</p>
+  <p>{{ userStatsData | json }}</p>
 </div>
-
-{{ searchTerm }}
-
-<p>Current month: {{ currentMonth }}</p>
-<p>Current year: {{ currentYear }}</p>
-
-<p>{{ userData | json }}</p>

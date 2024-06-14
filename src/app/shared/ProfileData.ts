@@ -14,3 +14,20 @@ export interface IProfileData {
   league: string;
   streaming_platforms: string[];
 }
+
+export const defaultProfileData = {
+  avatar: '',
+  player_id: 0,
+  '@id': '',
+  url: '',
+  username: '',
+  followers: 0,
+  country: '',
+  last_online: 0,
+  joined: 0,
+  status: '',
+  is_streamer: false,
+  verified: false,
+  league: '',
+  streaming_platforms: [],
+};
