@@ -64,10 +64,8 @@
 
   <!-- {{ searchTerm }} -->
 
-  <p>Current month: {{ currentMonth }}</p>
-  <p>Current year: {{ currentYear }}</p>
-
-  <!-- <p>{{ userData | json }}</p> -->
-  <!-- <p>{{ userStatsData | json }}</p> -->
-  <p>{{ userGameData | json }}</p>
+  @for (item of userGameData.games; track $index) {
+  <div>{{ item | json }}</div>
+  }
+  <!-- <p>{{ userGameData.games | json }}</p> -->
 </div>

@@ -18,11 +18,6 @@ import { GamesData, defaultGamesData } from '../shared/GamesData';
 export class DashboardComponent implements OnInit {
   constructor(private dataService: DataService) {}
 
-  currentMonth = new Intl.DateTimeFormat('en-US', { month: '2-digit' }).format(
-    new Date()
-  );
-  currentYear = new Date().getFullYear();
-
   searchTerm: string = 'luisr96';
 
   handleSearch(value: string) {
@@ -30,8 +25,8 @@ export class DashboardComponent implements OnInit {
     this.fetchData();
   }
 
-  testUserData$: Observable<IProfileData> =
-    this.dataService.getPlayerData('luisr96');
+  // testUserData$: Observable<IProfileData> =
+  //   this.dataService.getPlayerData('luisr96');
 
   userData: IProfileData = defaultProfileData;
   userStatsData: UserStatsData = defaultUserStatsData;
@@ -40,18 +35,11 @@ export class DashboardComponent implements OnInit {
   fetchData() {
     this.getPlayerData(this.searchTerm);
     this.getPlayerStats(this.searchTerm);
-    this.getGamesThisMonth(
-      this.searchTerm,
-      this.currentYear.toString(),
-      this.currentMonth.toString()
-    );
+    this.getLastPlayedGames(this.searchTerm);
   }
 
   ngOnInit() {
     this.fetchData();
-    // console.log(
-    //   new Intl.DateTimeFormat('en-US', { month: '2-digit' }).format(new Date())
-    // );
   }
 
   convertTime(unixTime: number) {
@@ -82,8 +70,8 @@ export class DashboardComponent implements OnInit {
     );
   }
 
-  getGamesThisMonth(playerName: string, year: string, month: string) {
-    this.dataService.getGamesThisMonth(playerName, year, month).subscribe(
+  getLastPlayedGames(playerName: string) {
+    this.dataService.getLastGamesDetails(playerName).subscribe(
       (data: any) => {
         this.userGameData = data;
         console.log(data);

@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, map, switchMap } from 'rxjs';
 import { IProfileData } from './ProfileData';
 import { GamesData } from './GamesData';
+import { GameArchiveData } from './GameArchiveData';
 
 // urls
 
@@ -34,12 +35,22 @@ export class DataService {
     return this.http.get<IProfileData>(url);
   }
 
-  getGamesThisMonth(
-    username: string,
-    year: string,
-    month: string
-  ): Observable<GamesData> {
-    const url = `https://api.chess.com/pub/player/${username}/games/${year}/${month}`;
-    return this.http.get<GamesData>(url);
+  getArchivedGames(username: string): Observable<GameArchiveData> {
+    const url = `https://api.chess.com/pub/player/${username}/games/archives`;
+    return this.http.get<GameArchiveData>(url);
+  }
+
+  getLastGamesDetails(username: string): Observable<GamesData> {
+    return this.getArchivedGames(username).pipe(
+      map((data: GameArchiveData) => {
+        // Get latest archive data
+        const lastArchiveUrl = data.archives[data.archives.length - 1];
+        return lastArchiveUrl;
+      }),
+      switchMap((lastArchiveUrl: string) => {
+        // Make a GET request to the last archive URL
+        return this.http.get<GamesData>(lastArchiveUrl);
+      })
+    );
   }
 }
