@@ -14,41 +14,60 @@
 
   <div class="stats-container">
     <div class="stats-section">
-      <h3>Daily</h3>
-      <p>{{ userStatsData.chess_daily.last.rating }}</p>
-      <p>
-        {{ userStatsData.chess_daily.record.win }} Wins,
-        {{ userStatsData.chess_daily.record.loss }} Losses,
-        {{ userStatsData.chess_daily.record.draw }} Draws
-      </p>
+      <h3 class="text-center">Daily</h3>
+      <p class="text-center">{{ userStatsData.chess_daily.last.rating }} ELO</p>
+      <div class="record-boxes">
+        <div class="record-box win">
+          {{ userStatsData.chess_daily.record.win }}W
+        </div>
+        <div class="record-box loss">
+          {{ userStatsData.chess_daily.record.loss }}L
+        </div>
+        <div class="record-box draw">
+          {{ userStatsData.chess_daily.record.draw }}D
+        </div>
+      </div>
     </div>
 
     <div class="stats-section">
-      <h3>Rapid</h3>
-      <p>{{ userStatsData.chess_rapid.last.rating }}</p>
-      <p>
-        {{ userStatsData.chess_rapid.record.win }} Wins,
-        {{ userStatsData.chess_rapid.record.loss }} Losses,
-        {{ userStatsData.chess_rapid.record.draw }} Draws
-      </p>
+      <h3 class="text-center">Rapid</h3>
+      <p class="text-center">{{ userStatsData.chess_rapid.last.rating }} ELO</p>
+      <div class="record-boxes">
+        <div class="record-box win">
+          {{ userStatsData.chess_rapid.record.win }}W
+        </div>
+        <div class="record-box loss">
+          {{ userStatsData.chess_rapid.record.loss }}L
+        </div>
+        <div class="record-box draw">
+          {{ userStatsData.chess_rapid.record.draw }}D
+        </div>
+      </div>
     </div>
 
     <div class="stats-section">
-      <h3>Blitz</h3>
-      <p>{{ userStatsData.chess_blitz.last.rating }}</p>
-      <p>
-        {{ userStatsData.chess_blitz.record.win }} Wins,
-        {{ userStatsData.chess_blitz.record.loss }} Losses,
-        {{ userStatsData.chess_blitz.record.draw }} Draws
-      </p>
+      <h3 class="text-center">Blitz</h3>
+      <p class="text-center">{{ userStatsData.chess_blitz.last.rating }} ELO</p>
+      <div class="record-boxes">
+        <div class="record-box win">
+          {{ userStatsData.chess_blitz.record.win }}W
+        </div>
+        <div class="record-box loss">
+          {{ userStatsData.chess_blitz.record.loss }}L
+        </div>
+        <div class="record-box draw">
+          {{ userStatsData.chess_blitz.record.draw }}D
+        </div>
+      </div>
     </div>
   </div>
 
-  {{ searchTerm }}
+  <!-- {{ searchTerm }} -->
 
   <p>Current month: {{ currentMonth }}</p>
   <p>Current year: {{ currentYear }}</p>
 
-  <p>{{ userData | json }}</p>
-  <p>{{ userStatsData | json }}</p>
+  <!-- <p>{{ userData | json }}</p> -->
+  <!-- <p>{{ userStatsData | json }}</p> -->
+  <p>{{ userGameData | json }}</p>
 </div>

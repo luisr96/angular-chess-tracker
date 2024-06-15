@@ -7,9 +7,9 @@
 }
 
 .main-container {
-  max-width: 600px; // Restrict the width for better layout on larger screens
+  max-width: 800px; // Restrict the width for better layout on larger screens
   margin: 0 auto; // Center the container
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); // Soft shadow for depth
+  // box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); // Soft shadow for depth
   border-radius: 10px; // Rounded corners for a unified look
   overflow: hidden; // Ensure the rounded corners work for all child elements
   background-color: #fff; // Background color for the parent container
@@ -54,7 +54,7 @@
 .stats-container {
   display: flex; // Display flex to align items horizontally
   justify-content: space-between; // Space sections evenly
-  background-color: #f1f1f1; // Different background color for differentiation
+  // background-color: #f1f1f1; // Different background color for differentiation
   padding: 20px;
 }
 
@@ -85,4 +85,37 @@
   margin: 5px 0;
   font-size: 16px; // Consistent font size
   color: #333; // Darker color for better contrast
+}
+
+.record-boxes {
+  display: flex; // Display flex to align items horizontally
+  justify-content: space-between; // Space boxes evenly
+}
+
+.record-box {
+  flex: 1; // Allow boxes to grow equally
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center; // Center the text inside boxes
+  margin: 0 5px; // Margin between boxes
+  font-weight: bold; // Bold text for emphasis
+}
+
+.record-box.win {
+  background-color: #4caf50; // Green background for wins
+  color: #fff; // White text
+}
+
+.record-box.loss {
+  background-color: #f44336; // Red background for losses
+  color: #fff; // White text
+}
+
+.record-box.draw {
+  background-color: #9e9e9e; // Gray background for draws
+  color: #000; // Black text
+}
+
+.text-center {
+  text-align: center; // Center text for better alignment
 }

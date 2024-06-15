@@ -6,6 +6,7 @@ import { JsonPipe, AsyncPipe } from '@angular/common';
 import { SearchComponent } from '../search/search.component';
 import { Observable } from 'rxjs';
 import { UserStatsData, defaultUserStatsData } from '../shared/UserStatsData';
+import { GamesData, defaultGamesData } from '../shared/GamesData';
 
 @Component({
   selector: 'app-dashboard',
@@ -34,12 +35,13 @@ export class DashboardComponent implements OnInit {
     this.dataService.getPlayerData('luisr96');
 
   userData: IProfileData = defaultProfileData;
-
   userStatsData: UserStatsData = defaultUserStatsData;
+  userGameData: GamesData = defaultGamesData;
 
   ngOnInit() {
     this.getPlayerData();
     this.getPlayerStats();
+    this.getGamesThisMonth();
     // console.log(
     //   new Intl.DateTimeFormat('en-US', { month: '2-digit' }).format(new Date())
     // );
@@ -54,7 +56,6 @@ export class DashboardComponent implements OnInit {
   getPlayerData() {
     this.dataService.getPlayerData(this.searchTerm).subscribe(
       (data: IProfileData) => {
-        console.log(data);
         this.userData = data;
       },
       (err) => {
@@ -66,12 +67,29 @@ export class DashboardComponent implements OnInit {
   getPlayerStats() {
     this.dataService.getPlayerStats(this.searchTerm).subscribe(
       (data: any) => {
-        console.log(data);
         this.userStatsData = data;
       },
       (err) => {
         console.log(err);
       }
     );
+  }
+
+  getGamesThisMonth() {
+    this.dataService
+      .getGamesThisMonth(
+        this.searchTerm,
+        this.currentYear.toString(),
+        this.currentMonth.toString()
+      )
+      .subscribe(
+        (data: any) => {
+          this.userGameData = data;
+          console.log(data);
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
   }
 }
