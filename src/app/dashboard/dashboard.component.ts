@@ -27,8 +27,7 @@ export class DashboardComponent implements OnInit {
 
   handleSearch(value: string) {
     this.searchTerm = value;
-    this.getPlayerData();
-    this.getPlayerStats();
+    this.fetchData();
   }
 
   testUserData$: Observable<IProfileData> =
@@ -38,10 +37,18 @@ export class DashboardComponent implements OnInit {
   userStatsData: UserStatsData = defaultUserStatsData;
   userGameData: GamesData = defaultGamesData;
 
+  fetchData() {
+    this.getPlayerData(this.searchTerm);
+    this.getPlayerStats(this.searchTerm);
+    this.getGamesThisMonth(
+      this.searchTerm,
+      this.currentYear.toString(),
+      this.currentMonth.toString()
+    );
+  }
+
   ngOnInit() {
-    this.getPlayerData();
-    this.getPlayerStats();
-    this.getGamesThisMonth();
+    this.fetchData();
     // console.log(
     //   new Intl.DateTimeFormat('en-US', { month: '2-digit' }).format(new Date())
     // );
@@ -53,8 +60,8 @@ export class DashboardComponent implements OnInit {
     return formattedDate;
   }
 
-  getPlayerData() {
-    this.dataService.getPlayerData(this.searchTerm).subscribe(
+  getPlayerData(playerName: string) {
+    this.dataService.getPlayerData(playerName).subscribe(
       (data: IProfileData) => {
         this.userData = data;
       },
@@ -64,8 +71,8 @@ export class DashboardComponent implements OnInit {
     );
   }
 
-  getPlayerStats() {
-    this.dataService.getPlayerStats(this.searchTerm).subscribe(
+  getPlayerStats(playerName: string) {
+    this.dataService.getPlayerStats(playerName).subscribe(
       (data: any) => {
         this.userStatsData = data;
       },
@@ -75,21 +82,15 @@ export class DashboardComponent implements OnInit {
     );
   }
 
-  getGamesThisMonth() {
-    this.dataService
-      .getGamesThisMonth(
-        this.searchTerm,
-        this.currentYear.toString(),
-        this.currentMonth.toString()
-      )
-      .subscribe(
-        (data: any) => {
-          this.userGameData = data;
-          console.log(data);
-        },
-        (err) => {
-          console.log(err);
-        }
-      );
+  getGamesThisMonth(playerName: string, year: string, month: string) {
+    this.dataService.getGamesThisMonth(playerName, year, month).subscribe(
+      (data: any) => {
+        this.userGameData = data;
+        console.log(data);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
 }
