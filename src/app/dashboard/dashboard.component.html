@@ -62,10 +62,21 @@
     </div>
   </div>
 
-  <!-- {{ searchTerm }} -->
-
-  @for (item of userGameData.games; track $index) {
-  <div>{{ item | json }}</div>
-  }
+  <div class="recent-games-container">
+    @for (game of userGameData; track $index) {
+    <div class="game-card">
+      <p>
+        <strong>{{ game.white.username }}</strong> ({{ game.white.rating }}) vs
+        <strong>{{ game.black.username }}</strong> ({{ game.black.rating }})
+      </p>
+      <p>{{ convertTime(game.end_time) }}</p>
+      <p>Result: {{ game.black }}</p>
+      <p><a [href]="game['url']" target="_blank">Link to game</a></p>
+    </div>
+    <div>{{ game.white | json }}</div>
+    <div>{{ game.black | json }}</div>
+    <p>------------------------------</p>
+    }
+  </div>
   <!-- <p>{{ userGameData.games | json }}</p> -->
 </div>

@@ -2,7 +2,7 @@ export interface GamesData {
   games: Game[];
 }
 
-interface Game {
+export interface Game {
   url: string;
   pgn: string;
   time_control: string;
@@ -33,7 +33,3 @@ interface Game {
     uuid: string;
   };
 }
-
-export const defaultGamesData: GamesData = {
-  games: [],
-};

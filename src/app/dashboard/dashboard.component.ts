@@ -6,7 +6,7 @@ import { JsonPipe, AsyncPipe } from '@angular/common';
 import { SearchComponent } from '../search/search.component';
 import { Observable } from 'rxjs';
 import { UserStatsData, defaultUserStatsData } from '../shared/UserStatsData';
-import { GamesData, defaultGamesData } from '../shared/GamesData';
+import { Game } from '../shared/GamesData';
 
 @Component({
   selector: 'app-dashboard',
@@ -30,7 +30,7 @@ export class DashboardComponent implements OnInit {
 
   userData: IProfileData = defaultProfileData;
   userStatsData: UserStatsData = defaultUserStatsData;
-  userGameData: GamesData = defaultGamesData;
+  userGameData: Game[] = [];
 
   fetchData() {
     this.getPlayerData(this.searchTerm);
@@ -40,12 +40,6 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.fetchData();
-  }
-
-  convertTime(unixTime: number) {
-    const date = new Date(unixTime * 1000);
-    const formattedDate = date.toLocaleString();
-    return formattedDate;
   }
 
   getPlayerData(playerName: string) {
@@ -74,11 +68,17 @@ export class DashboardComponent implements OnInit {
     this.dataService.getLastGamesDetails(playerName).subscribe(
       (data: any) => {
         this.userGameData = data;
-        console.log(data);
+        console.log(this.userGameData);
       },
       (err) => {
         console.log(err);
       }
     );
+  }
+
+  convertTime(unixTime: number) {
+    const date = new Date(unixTime * 1000);
+    const formattedDate = date.toLocaleString();
+    return formattedDate;
   }
 }
