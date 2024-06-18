@@ -1,5 +1,5 @@
 export interface UserStatsData {
-  chess_daily: {
+  chess_daily?: {
     last: {
       rating: number;
       date: number;
@@ -18,7 +18,7 @@ export interface UserStatsData {
       timeout_percent: number;
     };
   };
-  chess_rapid: {
+  chess_rapid?: {
     last: {
       rating: number;
       date: number;
@@ -30,7 +30,19 @@ export interface UserStatsData {
       draw: number;
     };
   };
-  chess_blitz: {
+  chess_blitz?: {
+    last: {
+      rating: number;
+      date: number;
+      rd: number;
+    };
+    record: {
+      win: number;
+      loss: number;
+      draw: number;
+    };
+  };
+  chess_bullet?: {
     last: {
       rating: number;
       date: number;

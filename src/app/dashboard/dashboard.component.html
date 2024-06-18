@@ -13,55 +13,10 @@
   </div>
 
   <div class="stats-container">
-    <div class="stats-section">
-      <h3 class="text-center">Daily</h3>
-      <p class="text-center">{{ userStatsData.chess_daily.last.rating }} ELO</p>
-      <div class="record-boxes">
-        <div class="record-box win">
-          {{ userStatsData.chess_daily.record.win }}W
-        </div>
-        <div class="record-box loss">
-          {{ userStatsData.chess_daily.record.loss }}L
-        </div>
-        <div class="record-box draw">
-          {{ userStatsData.chess_daily.record.draw }}D
-        </div>
-      </div>
-    </div>
-
-    <div class="stats-section">
-      <h3 class="text-center">Rapid</h3>
-      <p class="text-center">{{ userStatsData.chess_rapid.last.rating }} ELO</p>
-      <div class="record-boxes">
-        <div class="record-box win">
-          {{ userStatsData.chess_rapid.record.win }}W
-        </div>
-        <div class="record-box loss">
-          {{ userStatsData.chess_rapid.record.loss }}L
-        </div>
-        <div class="record-box draw">
-          {{ userStatsData.chess_rapid.record.draw }}D
-        </div>
-      </div>
-    </div>
-
-    <div class="stats-section">
-      <h3 class="text-center">Blitz</h3>
-      <p class="text-center">{{ userStatsData.chess_blitz.last.rating }} ELO</p>
-      <div class="record-boxes">
-        <div class="record-box win">
-          {{ userStatsData.chess_blitz.record.win }}W
-        </div>
-        <div class="record-box loss">
-          {{ userStatsData.chess_blitz.record.loss }}L
-        </div>
-        <div class="record-box draw">
-          {{ userStatsData.chess_blitz.record.draw }}D
-        </div>
-      </div>
-    </div>
+    <app-stats [userStatsData]="userStatsData"></app-stats>
   </div>
 
+  <!-- Recent Games -->
   <div class="recent-games-container">
     @for (game of userGameData; track $index) {
     <div class="game-card">

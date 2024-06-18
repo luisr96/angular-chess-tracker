@@ -1,0 +1,85 @@
+<div class="stats-container">
+  <!-- Daily -->
+  @if (userStatsData.chess_daily) {
+  <div class="stats-section">
+    <h3 class="text-center">Daily</h3>
+    <p class="text-center">{{ userStatsData.chess_daily.last.rating }} ELO</p>
+    <div class="record-boxes">
+      <div class="record-box win">
+        {{ userStatsData.chess_daily.record.win }}W
+      </div>
+      <div class="record-box loss">
+        {{ userStatsData.chess_daily.record.loss }}L
+      </div>
+      <div class="record-box draw">
+        {{ userStatsData.chess_daily.record.draw }}D
+      </div>
+    </div>
+  </div>
+  } @else {
+  <p>No Daily records found</p>
+  <!--  -->
+
+  <!-- Rapid -->
+  } @if (userStatsData.chess_rapid) {
+  <div class="stats-section">
+    <h3 class="text-center">Rapid</h3>
+    <p class="text-center">{{ userStatsData.chess_rapid.last.rating }} ELO</p>
+    <div class="record-boxes">
+      <div class="record-box win">
+        {{ userStatsData.chess_rapid.record.win }}W
+      </div>
+      <div class="record-box loss">
+        {{ userStatsData.chess_rapid.record.loss }}L
+      </div>
+      <div class="record-box draw">
+        {{ userStatsData.chess_rapid.record.draw }}D
+      </div>
+    </div>
+  </div>
+  } @else {
+  <p>No Rapid records found</p>
+  <!--  -->
+
+  <!-- Blitz -->
+  } @if (userStatsData.chess_blitz) {
+  <div class="stats-section">
+    <h3 class="text-center">Blitz</h3>
+    <p class="text-center">{{ userStatsData.chess_blitz.last.rating }} ELO</p>
+    <div class="record-boxes">
+      <div class="record-box win">
+        {{ userStatsData.chess_blitz.record.win }}W
+      </div>
+      <div class="record-box loss">
+        {{ userStatsData.chess_blitz.record.loss }}L
+      </div>
+      <div class="record-box draw">
+        {{ userStatsData.chess_blitz.record.draw }}D
+      </div>
+    </div>
+  </div>
+  } @else {
+  <p>No Blitz records found</p>
+  <!--  -->
+
+  <!-- Bullet -->
+  } @if (userStatsData.chess_bullet) {
+  <div class="stats-section">
+    <h3 class="text-center">Bullet</h3>
+    <p class="text-center">{{ userStatsData.chess_bullet.last.rating }} ELO</p>
+    <div class="record-boxes">
+      <div class="record-box win">
+        {{ userStatsData.chess_bullet.record.win }}W
+      </div>
+      <div class="record-box loss">
+        {{ userStatsData.chess_bullet.record.loss }}L
+      </div>
+      <div class="record-box draw">
+        {{ userStatsData.chess_bullet.record.draw }}D
+      </div>
+    </div>
+  </div>
+  } @else {
+  <p>No Bullet records found</p>
+  }
+</div>

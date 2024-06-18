@@ -7,11 +7,18 @@ import { SearchComponent } from '../search/search.component';
 import { Observable } from 'rxjs';
 import { UserStatsData, defaultUserStatsData } from '../shared/UserStatsData';
 import { Game } from '../shared/GamesData';
+import { StatsComponent } from '../stats/stats.component';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [ReactiveFormsModule, JsonPipe, AsyncPipe, SearchComponent],
+  imports: [
+    ReactiveFormsModule,
+    JsonPipe,
+    AsyncPipe,
+    SearchComponent,
+    StatsComponent,
+  ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
 })
