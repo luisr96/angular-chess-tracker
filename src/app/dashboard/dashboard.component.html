@@ -7,7 +7,7 @@
     <img [src]="userData.avatar" alt="User Avatar" />
     <div class="user-info">
       <p>{{ userData.username }}</p>
-      <p>Joined: {{ convertTime(userData.joined) }}</p>
+      <p>Joined: {{ convertTime(userData.joined, false) }}</p>
       <p>Last online: {{ convertTime(userData.last_online) }}</p>
     </div>
   </div>
@@ -19,19 +19,29 @@
   <!-- Recent Games -->
   <div class="recent-games-container">
     @for (game of userGameData; track $index) {
-    <div class="game-card">
+    <div
+      class="game-card"
+      [ngClass]="{
+        win:  searchTerm.toLowerCase() == game.black.username.toLowerCase() && game.black.result == 'win' ||
+              searchTerm.toLowerCase() == game.white.username.toLowerCase() && game.white.result == 'win',
+        loss: searchTerm.toLowerCase() == game.black.username.toLowerCase() && ['checkmated', 'resigned'].includes(game.black.result) ||
+              searchTerm.toLowerCase() == game.white.username.toLowerCase() && ['checkmated', 'resigned'].includes(game.white.result),
+      }"
+    >
       <p>
         <strong>{{ game.white.username }}</strong> ({{ game.white.rating }}) vs
         <strong>{{ game.black.username }}</strong> ({{ game.black.rating }})
       </p>
       <p>{{ convertTime(game.end_time) }}</p>
-      <p>Result: {{ game.black }}</p>
+      <p>
+        Opening:
+        <a [href]="getOpeningUrl(game.pgn)" target="_blank">{{
+          formatOpeningUrlToWords(getOpeningUrl(game.pgn))
+        }}</a>
+      </p>
+      <p>Result: {{ getResultText(game.pgn) }}</p>
       <p><a [href]="game['url']" target="_blank">Link to game</a></p>
     </div>
-    <div>{{ game.white | json }}</div>
-    <div>{{ game.black | json }}</div>
-    <p>------------------------------</p>
     }
   </div>
-  <!-- <p>{{ userGameData.games | json }}</p> -->
 </div>

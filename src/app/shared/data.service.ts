@@ -13,9 +13,6 @@ import { GameArchiveData } from './GameArchiveData';
 // stats:
 // https://api.chess.com/pub/player/{username}/stats
 
-// games this month:
-// https://api.chess.com/pub/player/luisr96/games/{yyyy}/{mm}
-
 // random puzzle
 // https://api.chess.com/pub/puzzle/random
 

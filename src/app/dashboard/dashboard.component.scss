@@ -65,10 +65,19 @@
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); // Soft shadow for depth
   text-align: center; // Center text
+  margin-bottom: 30px;
 }
 
 .recent-games-container {
   // display: flex; // Display flex to align items horizontally
   padding: 20px;
   background-color: #f1f1f1; // Different background color for differentiation
+}
+
+.win {
+  background-color: #4caf4f3b; // Green color for wins
+}
+
+.loss {
+  background-color: #f443363a; // Red color for losses
 }
