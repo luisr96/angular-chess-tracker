@@ -16,6 +16,8 @@
     <app-stats [userStatsData]="userStatsData"></app-stats>
   </div>
 
+  <h2 class="text-center">Recent Games</h2>
+
   <!-- Recent Games -->
   <div class="recent-games-container">
     @for (game of userGameData; track $index) {
@@ -28,6 +30,9 @@
               searchTerm.toLowerCase() == game.white.username.toLowerCase() && ['checkmated', 'resigned', 'timeout', 'abandoned'].includes(game.white.result),
       }"
     >
+      <h3>
+        {{ +game.time_control / 60 }} min {{ game.time_class | titlecase }} Game
+      </h3>
       <p>
         <strong>{{ game.white.username }}</strong> ({{ game.white.rating }}) vs
         <strong>{{ game.black.username }}</strong> ({{ game.black.rating }})
