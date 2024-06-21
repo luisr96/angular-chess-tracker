@@ -24,8 +24,8 @@
       [ngClass]="{
         win:  searchTerm.toLowerCase() == game.black.username.toLowerCase() && game.black.result == 'win' ||
               searchTerm.toLowerCase() == game.white.username.toLowerCase() && game.white.result == 'win',
-        loss: searchTerm.toLowerCase() == game.black.username.toLowerCase() && ['checkmated', 'resigned'].includes(game.black.result) ||
-              searchTerm.toLowerCase() == game.white.username.toLowerCase() && ['checkmated', 'resigned'].includes(game.white.result),
+        loss: searchTerm.toLowerCase() == game.black.username.toLowerCase() && ['checkmated', 'resigned', 'timeout', 'abandoned'].includes(game.black.result) ||
+              searchTerm.toLowerCase() == game.white.username.toLowerCase() && ['checkmated', 'resigned', 'timeout', 'abandoned'].includes(game.white.result),
       }"
     >
       <p>
