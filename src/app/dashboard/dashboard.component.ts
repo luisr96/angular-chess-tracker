@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 import { UserStatsData, defaultUserStatsData } from '../shared/UserStatsData';
 import { Game } from '../shared/GamesData';
 import { StatsComponent } from '../stats/stats.component';
+import { SearchService } from '../search/search.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -24,14 +25,12 @@ import { StatsComponent } from '../stats/stats.component';
   styleUrl: './dashboard.component.scss',
 })
 export class DashboardComponent implements OnInit {
-  constructor(private dataService: DataService) {}
+  constructor(
+    private dataService: DataService,
+    private searchService: SearchService
+  ) {}
 
   searchTerm: string = 'luisr96';
-
-  handleSearch(value: string) {
-    this.searchTerm = value;
-    this.fetchData();
-  }
 
   // testUserData$: Observable<IProfileData> =
   //   this.dataService.getPlayerData('luisr96');
@@ -46,7 +45,11 @@ export class DashboardComponent implements OnInit {
     this.getLastPlayedGames(this.searchTerm);
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.searchService.searchTerm$.subscribe((term) => {
+      this.searchTerm = term;
+      this.fetchData();
+    });
     this.fetchData();
   }
 

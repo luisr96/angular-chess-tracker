@@ -1,10 +1,13 @@
-<mat-form-field>
+<div class="search-container">
   <input
-    matInput
+    type="text"
     [formControl]="searchTerm"
     required
-    placeholder="Search for a player..."
+    placeholder="Search Chess.com for a player..."
+    class="search-input"
+    (keyup.enter)="onSearch()"
   />
-</mat-form-field>
-
-<button mat-button type="submit" (click)="onSearch()">Submit</button>
+  <button type="submit" (click)="onSearch()" class="search-button">
+    Submit
+  </button>
+</div>

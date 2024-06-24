@@ -24,13 +24,7 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); // Soft shadow for depth
   max-width: 800px; // Restrict the width for better layout on larger screens
   margin: 0 auto; // Center the container
-  transition: box-shadow 0.3s, transform 0.3s; // Smooth transitions for hover effect
-  cursor: pointer; // Change cursor on hover
-}
-
-.user-details-container:hover {
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); // Darken shadow on hover
-  transform: translateY(-5px); // Lift the container slightly on hover
+  margin-top: 20px;
 }
 
 .user-avatar {

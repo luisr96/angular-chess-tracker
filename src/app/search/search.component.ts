@@ -20,7 +20,6 @@ export class SearchComponent {
   searchTerm: FormControl = new FormControl('');
 
   onSearch() {
-    console.log(`In child function:`);
     this.search.emit(this.searchTerm.value);
   }
 }

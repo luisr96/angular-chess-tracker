@@ -1,18 +1,6 @@
-<mat-toolbar color="primary">
-  <button mat-icon-button (click)="sidenav.toggle()">
-    <mat-icon>menu</mat-icon>
-  </button>
-  <span>Chess Tracker</span>
-</mat-toolbar>
-
-<mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #sidenav class="sidenav" fixedInViewport="true" [opened]="false">
-    <mat-nav-list>
-      <a mat-list-item href="#">Home</a>
-      <a mat-list-item href="#">About</a>
-      <a mat-list-item href="#">Contact</a>
-    </mat-nav-list>
-  </mat-sidenav>
-
-  <mat-sidenav-content> </mat-sidenav-content>
-</mat-sidenav-container>
+<nav class="navbar">
+  <div class="navbar-brand">ChessTracker</div>
+  <div class="navbar-search">
+    <app-search (search)="handleSearch($event)"></app-search>
+  </div>
+</nav>
