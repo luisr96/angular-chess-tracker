@@ -4,11 +4,13 @@
 
 <div class="main-container">
   <div class="user-details-container">
-    <img [src]="userData.avatar" alt="User Avatar" />
+    <img [src]="userData.avatar" class="user-avatar" alt="User Avatar" />
     <div class="user-info">
-      <p>{{ userData.username }}</p>
-      <p>Joined: {{ convertTime(userData.joined, false) }}</p>
-      <p>Last online: {{ convertTime(userData.last_online) }}</p>
+      <p class="username">{{ userData.username }}</p>
+      <p class="joined">Joined: {{ convertTime(userData.joined, false) }}</p>
+      <p class="last-online">
+        Last online: {{ convertTime(userData.last_online) }}
+      </p>
     </div>
   </div>
 
@@ -30,22 +32,30 @@
               searchTerm.toLowerCase() == game.white.username.toLowerCase() && ['checkmated', 'resigned', 'timeout', 'abandoned'].includes(game.white.result),
       }"
     >
-      <h3>
-        {{ +game.time_control / 60 }} min {{ game.time_class | titlecase }} Game
-      </h3>
-      <p>
-        <strong>{{ game.white.username }}</strong> ({{ game.white.rating }}) vs
-        <strong>{{ game.black.username }}</strong> ({{ game.black.rating }})
+      <div class="game-details">
+        <h3>{{ game.time_class | titlecase }} Game</h3>
+        <p class="time">
+          {{ convertTime(game.end_time) }}
+        </p>
+        <p>
+          <strong>{{ game.white.username }}</strong> ({{ game.white.rating }})
+          vs <strong>{{ game.black.username }}</strong> ({{
+            game.black.rating
+          }})
+        </p>
+        <p>
+          Opening:
+          <a [href]="getOpeningUrl(game.pgn)" target="_blank">{{
+            formatOpeningUrlToWords(getOpeningUrl(game.pgn))
+          }}</a>
+        </p>
+        <p>
+          <strong>{{ getResultText(game.pgn) }}</strong>
+        </p>
+      </div>
+      <p class="game-link">
+        <a [href]="game['url']" target="_blank">Link to game</a>
       </p>
-      <p>{{ convertTime(game.end_time) }}</p>
-      <p>
-        Opening:
-        <a [href]="getOpeningUrl(game.pgn)" target="_blank">{{
-          formatOpeningUrlToWords(getOpeningUrl(game.pgn))
-        }}</a>
-      </p>
-      <p>Result: {{ getResultText(game.pgn) }}</p>
-      <p><a [href]="game['url']" target="_blank">Link to game</a></p>
     </div>
     }
   </div>
