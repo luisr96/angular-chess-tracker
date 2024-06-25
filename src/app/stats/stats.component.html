@@ -3,7 +3,9 @@
   @if (userStatsData.chess_daily) {
   <div class="stats-section">
     <h3 class="text-center">Daily</h3>
-    <p class="text-center">{{ userStatsData.chess_daily.last.rating }} ELO</p>
+    <p class="emphasized-text">
+      {{ userStatsData.chess_daily.last.rating }} ELO
+    </p>
     <div class="record-boxes">
       <div class="record-box win">
         {{ userStatsData.chess_daily.record.win }}W
@@ -23,7 +25,9 @@
   } @if (userStatsData.chess_rapid) {
   <div class="stats-section">
     <h3 class="text-center">Rapid</h3>
-    <p class="text-center">{{ userStatsData.chess_rapid.last.rating }} ELO</p>
+    <p class="emphasized-text">
+      {{ userStatsData.chess_rapid.last.rating }} ELO
+    </p>
     <div class="record-boxes">
       <div class="record-box win">
         {{ userStatsData.chess_rapid.record.win }}W
@@ -43,7 +47,9 @@
   } @if (userStatsData.chess_blitz) {
   <div class="stats-section">
     <h3 class="text-center">Blitz</h3>
-    <p class="text-center">{{ userStatsData.chess_blitz.last.rating }} ELO</p>
+    <p class="emphasized-text">
+      {{ userStatsData.chess_blitz.last.rating }} ELO
+    </p>
     <div class="record-boxes">
       <div class="record-box win">
         {{ userStatsData.chess_blitz.record.win }}W
@@ -63,7 +69,9 @@
   } @if (userStatsData.chess_bullet) {
   <div class="stats-section">
     <h3 class="text-center">Bullet</h3>
-    <p class="text-center">{{ userStatsData.chess_bullet.last.rating }} ELO</p>
+    <p class="emphasized-text">
+      {{ userStatsData.chess_bullet.last.rating }} ELO
+    </p>
     <div class="record-boxes">
       <div class="record-box win">
         {{ userStatsData.chess_bullet.record.win }}W

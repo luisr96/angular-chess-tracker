@@ -18,73 +18,77 @@
 }
 
 .stats-section {
-  background-color: #fff; // Matching background color for sections
+  background-color: #fff;
   padding: 20px;
-  border-radius: 10px; // Rounded corners to match the top container
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); // Matching shadow
-  transition: transform 0.3s, box-shadow 0.3s; // Smooth transitions for hover effect
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .stats-section:hover {
-  transform: translateY(-5px); // Lift the card slightly on hover
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); // Darken shadow on hover
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .stats-section h3 {
   margin-bottom: 10px;
-  font-size: 20px; // Larger font for section titles
-  color: #555; // Slightly lighter color for titles
-  text-transform: uppercase; // Uppercase for section titles
-  letter-spacing: 0.5px; // Slightly increased letter spacing
+  font-size: 20px;
+  color: #555;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .stats-section p {
   margin: 5px 0;
-  font-size: 16px; // Consistent font size
-  color: #333; // Darker color for better contrast
+  font-size: 22px; /* Increased font size for emphasis */
+  font-weight: bold; /* Bold font weight for emphasis */
+  color: #1e88e5; /* Blue color for emphasis */
+  text-align: center; /* Center align the text */
 }
 
 .record-boxes {
-  display: flex; // Display flex to align items horizontally
-  justify-content: space-between; // Space boxes evenly
+  display: flex;
+  justify-content: space-around;
+  margin-top: 15px;
 }
 
 .record-box {
-  flex: 1; // Allow boxes to grow equally
+  flex: 1;
   padding: 10px;
   border-radius: 5px;
-  text-align: center; // Center the text inside boxes
-  margin: 0 5px; // Margin between boxes
-  font-weight: bold; // Bold text for emphasis
-  color: #fff; // White text for contrast
-  transition: transform 0.2s; // Smooth transition for hover effect
+  text-align: center;
+  margin: 0 5px;
+  font-weight: bold;
+  color: #fff; /* White text */
+  transition: transform 0.2s, background-color 0.2s; /* Smooth transitions */
 }
 
 .record-box.win {
-  background-color: #4caf50; // Green background for wins
+  background-color: #4caf50; /* Green background for wins */
 }
 
 .record-box.loss {
-  background-color: #f44336; // Red background for losses
+  background-color: #f44336; /* Red background for losses */
 }
 
 .record-box.draw {
-  background-color: #9e9e9e; // Gray background for draws
-  color: #000; // Black text for contrast
+  background-color: #ffeb3b60; /* Yellow background for draws */
+  color: #333; /* Darker text for better contrast */
 }
 
 .record-box:hover {
-  transform: scale(1.05); // Slightly enlarge the box on hover
+  transform: scale(1.05);
+  background-color: #2196f3; /* Blue background on hover */
 }
 
 .center {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 16px; // Consistent font size for messages
-  color: #777; // Lighter color for messages
-  background-color: #f9f9f9; // Light background for messages
+  font-size: 16px;
+  color: #777;
+  background-color: #f9f9f9;
   padding: 10px;
-  border-radius: 5px; // Rounded corners for messages
-  margin-top: 20px; // Spacing above the messages
+  border-radius: 5px;
+  margin-top: 20px;
 }
