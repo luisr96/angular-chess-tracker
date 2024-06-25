@@ -20,9 +20,13 @@
 .navbar-search {
   display: flex;
   align-items: center;
+  flex-grow: 1; /* Allow the search bar to take up the remaining width */
+  justify-content: flex-end; /* Align the search bar to the right */
+  margin-right: 40px;
 }
 
 .search-input {
+  flex-grow: 1; /* Make the input take up the remaining width of the search bar */
   padding: 5px 10px;
   border: none;
   border-radius: 5px 0 0 5px;
@@ -41,4 +45,31 @@
 
 .search-button:hover {
   background-color: #f1f1f1;
+}
+
+@media (max-width: 680px) {
+  .navbar {
+    flex-direction: column;
+    align-items: center; /* Center items horizontally */
+  }
+
+  .navbar-brand {
+    margin-bottom: 10px; /* Add space between brand and search on small screens */
+  }
+
+  .navbar-search {
+    width: 100%; /* Ensure the search bar takes the full width */
+    margin-left: 0; /* Remove the left margin */
+    justify-content: center; /* Center the search bar horizontally */
+  }
+
+  .search-input {
+    width: calc(
+      100% - 20px
+    ); /* Adjust the width of the input to fit with the button */
+  }
+
+  .search-button {
+    width: 80px; /* Fixed width for the button */
+  }
 }

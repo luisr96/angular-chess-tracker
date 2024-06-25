@@ -3,11 +3,11 @@
     type="text"
     [formControl]="searchTerm"
     required
-    placeholder="Search Chess.com for a player..."
+    placeholder="Search Chess.com..."
     class="search-input"
     (keyup.enter)="onSearch()"
   />
   <button type="submit" (click)="onSearch()" class="search-button">
-    Search
+    Find player
   </button>
 </div>
