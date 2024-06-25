@@ -4,17 +4,7 @@ import { Observable, map, mergeMap, of } from 'rxjs';
 import { IProfileData } from '../ProfileData';
 import { Game, GamesData } from '../GamesData';
 import { GameArchiveData } from '../GameArchiveData';
-
-// urls
-
-// user data:
-// https://api.chess.com/pub/player/{username}
-
-// stats:
-// https://api.chess.com/pub/player/{username}/stats
-
-// random puzzle
-// https://api.chess.com/pub/puzzle/random
+import { UserStatsData } from '../UserStatsData';
 
 @Injectable({
   providedIn: 'root',
@@ -27,9 +17,9 @@ export class DataService {
     return this.http.get<IProfileData>(url);
   }
 
-  getPlayerStats(username: string): Observable<IProfileData> {
+  getPlayerStats(username: string): Observable<UserStatsData> {
     const url = `https://api.chess.com/pub/player/${username}/stats`;
-    return this.http.get<IProfileData>(url);
+    return this.http.get<UserStatsData>(url);
   }
 
   getArchivedGames(username: string): Observable<GameArchiveData> {

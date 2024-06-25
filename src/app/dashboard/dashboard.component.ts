@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../shared/data/data.service';
 import { IProfileData, defaultProfileData } from '../shared/ProfileData';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { JsonPipe, AsyncPipe, CommonModule } from '@angular/common';
 import { SearchComponent } from '../search/search.component';
-import { Observable } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { UserStatsData, defaultUserStatsData } from '../shared/UserStatsData';
 import { Game } from '../shared/GamesData';
 import { StatsComponent } from '../stats/stats.component';
@@ -30,15 +30,15 @@ export class DashboardComponent implements OnInit {
     private searchService: SearchService
   ) {}
 
-  searchTerm: string = 'luisr96';
-  errorMessage: string | null = null;
+  private subscriptions: Subscription[] = [];
 
-  // testUserData$: Observable<IProfileData> =
-  //   this.dataService.getPlayerData('luisr96');
+  searchTerm: string = 'luisr96';
 
   userData: IProfileData = defaultProfileData;
   userStatsData: UserStatsData = defaultUserStatsData;
   userGameData: Game[] = [];
+
+  errorMessage: string | null = null;
 
   fetchData() {
     if (this.searchTerm.trim().length === 0) this.searchTerm = 'luisr96';
@@ -48,43 +48,52 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.searchService.searchTerm$.subscribe((term) => {
-      this.resetErrors();
-      this.searchTerm = term;
-      this.fetchData();
-    });
+    this.subscriptions.push(
+      this.searchService.searchTerm$.subscribe((term) => {
+        this.resetErrors();
+        this.searchTerm = term;
+        this.fetchData();
+      })
+    );
+
     this.fetchData();
   }
 
   getPlayerData(playerName: string) {
-    this.dataService.getPlayerData(playerName).subscribe(
-      (data: IProfileData) => {
-        this.userData = data;
-        this.resetErrors();
-      },
-      (err) => {
-        this.errorMessage = `No account associated with ${playerName}. Try a different user.`;
-      }
+    this.subscriptions.push(
+      this.dataService.getPlayerData(playerName).subscribe(
+        (data: IProfileData) => {
+          this.userData = data;
+          this.resetErrors();
+        },
+        (err) => {
+          this.errorMessage = `No account associated with ${playerName}. Try a different user.`;
+        }
+      )
     );
   }
 
   getPlayerStats(playerName: string) {
-    this.dataService.getPlayerStats(playerName).subscribe(
-      (data: any) => {
-        this.userStatsData = data;
-        this.resetErrors();
-      },
-      (err) => {}
+    this.subscriptions.push(
+      this.dataService.getPlayerStats(playerName).subscribe(
+        (data: UserStatsData) => {
+          this.userStatsData = data;
+          this.resetErrors();
+        },
+        (err) => {}
+      )
     );
   }
 
   getLastPlayedGames(playerName: string) {
-    this.dataService.getLastGamesDetails(playerName).subscribe(
-      (data: any) => {
-        this.userGameData = data;
-        this.resetErrors();
-      },
-      (err) => {}
+    this.subscriptions.push(
+      this.dataService.getLastGamesDetails(playerName).subscribe(
+        (data: Game[]) => {
+          this.userGameData = data;
+          this.resetErrors();
+        },
+        (err) => {}
+      )
     );
   }
 
@@ -141,5 +150,9 @@ export class DashboardComponent implements OnInit {
       formattedDateTime = date.toLocaleDateString();
     }
     return formattedDateTime;
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((s) => s.unsubscribe());
   }
 }
