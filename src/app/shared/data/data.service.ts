@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, map, switchMap } from 'rxjs';
-import { IProfileData } from './ProfileData';
-import { Game, GamesData } from './GamesData';
-import { GameArchiveData } from './GameArchiveData';
+import { Observable, map, mergeMap, of } from 'rxjs';
+import { IProfileData } from '../ProfileData';
+import { Game, GamesData } from '../GamesData';
+import { GameArchiveData } from '../GameArchiveData';
 
 // urls
 
@@ -39,18 +39,19 @@ export class DataService {
 
   getLastGamesDetails(username: string): Observable<Game[]> {
     return this.getArchivedGames(username).pipe(
-      map((data: GameArchiveData) => {
-        // Get latest archive data
+      mergeMap((data: GameArchiveData) => {
         const lastArchiveUrl = data.archives[data.archives.length - 1];
-        return lastArchiveUrl;
-      }),
-      switchMap((lastArchiveUrl: string) => {
-        // Make a GET request to the last archive URL
-        return this.http.get<GamesData>(lastArchiveUrl);
-      }),
-      map((gamesData: GamesData) => {
-        // Extract and sort games by end_time
-        return gamesData.games.sort((a, b) => b.end_time - a.end_time);
+
+        if (!lastArchiveUrl) {
+          return of([]);
+        }
+
+        return this.http.get<GamesData>(lastArchiveUrl).pipe(
+          map((gamesData: GamesData) => {
+            // Extract and sort games by end_time
+            return gamesData.games.sort((a, b) => b.end_time - a.end_time);
+          })
+        );
       })
     );
   }

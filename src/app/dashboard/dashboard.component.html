@@ -1,3 +1,6 @@
+@if (errorMessage) {
+<h2 class="error-message">{{ errorMessage }}</h2>
+} @else {
 <div class="main-container">
   <div class="user-details-container">
     <img [src]="userData.avatar" class="user-avatar" alt="User Avatar" />
@@ -14,9 +17,12 @@
     <app-stats [userStatsData]="userStatsData"></app-stats>
   </div>
 
+  @if (userGameData.length === 0) {
+  <h2 class="no-games-message">
+    {{ userData.username }} has no games on Chess.com
+  </h2>
+  } @else {
   <h2 class="text-center">Recent Games</h2>
-
-  <!-- Recent Games -->
   <div class="recent-games-container">
     @for (game of userGameData; track $index) {
     <div
@@ -55,4 +61,6 @@
     </div>
     }
   </div>
+  }
 </div>
+}

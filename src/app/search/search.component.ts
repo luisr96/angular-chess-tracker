@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { IProfileData } from '../shared/ProfileData';
-import { DataService } from '../shared/data.service';
+import { DataService } from '../shared/data/data.service';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 

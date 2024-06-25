@@ -11,6 +11,6 @@ export class SearchService {
   searchTerm$ = this.searchTermSource.asObservable();
 
   setSearchTerm(term: string) {
-    this.searchTermSource.next(term);
+    this.searchTermSource.next(term.trim());
   }
 }

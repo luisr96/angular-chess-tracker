@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../shared/data.service';
+import { DataService } from '../shared/data/data.service';
 import { IProfileData, defaultProfileData } from '../shared/ProfileData';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { JsonPipe, AsyncPipe, CommonModule } from '@angular/common';
@@ -31,6 +31,7 @@ export class DashboardComponent implements OnInit {
   ) {}
 
   searchTerm: string = 'luisr96';
+  errorMessage: string | null = null;
 
   // testUserData$: Observable<IProfileData> =
   //   this.dataService.getPlayerData('luisr96');
@@ -40,6 +41,7 @@ export class DashboardComponent implements OnInit {
   userGameData: Game[] = [];
 
   fetchData() {
+    if (this.searchTerm.trim().length === 0) this.searchTerm = 'luisr96';
     this.getPlayerData(this.searchTerm);
     this.getPlayerStats(this.searchTerm);
     this.getLastPlayedGames(this.searchTerm);
@@ -47,6 +49,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.searchService.searchTerm$.subscribe((term) => {
+      this.resetErrors();
       this.searchTerm = term;
       this.fetchData();
     });
@@ -57,9 +60,10 @@ export class DashboardComponent implements OnInit {
     this.dataService.getPlayerData(playerName).subscribe(
       (data: IProfileData) => {
         this.userData = data;
+        this.resetErrors();
       },
       (err) => {
-        console.log(err);
+        this.errorMessage = `No account associated with ${playerName}. Try a different user.`;
       }
     );
   }
@@ -68,10 +72,9 @@ export class DashboardComponent implements OnInit {
     this.dataService.getPlayerStats(playerName).subscribe(
       (data: any) => {
         this.userStatsData = data;
+        this.resetErrors();
       },
-      (err) => {
-        console.log(err);
-      }
+      (err) => {}
     );
   }
 
@@ -79,12 +82,14 @@ export class DashboardComponent implements OnInit {
     this.dataService.getLastGamesDetails(playerName).subscribe(
       (data: any) => {
         this.userGameData = data;
-        console.log(this.userGameData);
+        this.resetErrors();
       },
-      (err) => {
-        console.log(err);
-      }
+      (err) => {}
     );
+  }
+
+  resetErrors() {
+    this.errorMessage = null;
   }
 
   getResultText(inputPgnText: string) {
