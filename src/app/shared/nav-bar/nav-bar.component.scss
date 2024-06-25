@@ -47,6 +47,21 @@
   background-color: #f1f1f1;
 }
 
+.project-info {
+  display: flex;
+  align-items: center;
+  max-width: 600px; /* Adjust max-width as needed */
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.github-logo {
+  margin-left: 10px;
+  width: 24px; /* Adjust width to match the font size */
+  height: auto; /* Maintain aspect ratio */
+}
+
 @media (max-width: 680px) {
   .navbar {
     flex-direction: column;
@@ -64,12 +79,14 @@
   }
 
   .search-input {
-    width: calc(
-      100% - 20px
-    ); /* Adjust the width of the input to fit with the button */
+    width: calc(100% - 20px);
   }
 
   .search-button {
     width: 80px; /* Fixed width for the button */
+  }
+
+  .project-info {
+    align-items: flex-start;
   }
 }
