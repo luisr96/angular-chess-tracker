@@ -3,7 +3,9 @@
 } @else {
 <div class="main-container">
   <div class="user-details-container">
-    <img [src]="userData.avatar" class="user-avatar" alt="User Avatar" />
+    <div class="avatar-container">
+      <img [src]="userData.avatar" class="user-avatar" alt="" />
+    </div>
     <div class="user-info">
       <p class="username">{{ userData.username }}</p>
       <p class="joined">Joined: {{ convertTime(userData.joined, false) }}</p>
